@@ -15,6 +15,7 @@
 - popToTop when tapping active bottom tab on web ([#40174](https://github.com/expo/expo/pull/40174) by [@juliesaia](https://github.com/juliesaia))
 - Add selected option to labelStyle and iconColor in NativeTabs container ([#40155](https://github.com/expo/expo/pull/40155) by [@Ubax](https://github.com/Ubax)
 - Add environmental variable to enable experimental web modal implementation ([#40231](https://github.com/expo/expo/pull/40231) by [@Ubax](https://github.com/Ubax))
+- Add split view layout support ([#39563](https://github.com/expo/expo/pull/39563) by [@Ubax](https://github.com/Ubax))
 
 ### 🐛 Bug fixes
 
