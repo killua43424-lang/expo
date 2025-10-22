@@ -53,7 +53,7 @@ export type AgeRangeResponse = {
 
 export interface ExpoAgeRangeModule extends NativeModule {
   /**
-   * Prompts user to share their age range with the app.
+   * Prompts the user to share their age range with the app. Responses may be cached by the OS for future requests.
    * @return A promise that resolves with user's age range response, or rejects with an error.
    * The user needs to be signed in on the device to get a valid response.
    * When not supported (iOS < 26.0 and web), the call returns `lowerBound: 18`, equivalent to the response of an adult user.
