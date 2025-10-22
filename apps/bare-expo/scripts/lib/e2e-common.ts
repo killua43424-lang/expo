@@ -69,7 +69,6 @@ appId: ${appId}
     timeout: 120000
 - assertVisible:
     text: "Success!"
-- stopApp
 `);
   }
 

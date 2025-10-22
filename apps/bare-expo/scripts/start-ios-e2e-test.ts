@@ -17,6 +17,7 @@ import {
   MAESTRO_ENV_VARS,
   TEST_DURATION_LABEL,
 } from './lib/e2e-common';
+import { getDylibPath } from '../e2e/image-comparison/viewshot-dylib/ScreenInspectorIOS';
 
 const TARGET_DEVICE = 'iPhone 17 Pro';
 const TARGET_DEVICE_IOS_VERSION = 26;
@@ -194,6 +195,22 @@ async function testAsync(
     await startSimulatorAsync(deviceId);
     console.log(`\n🔌 Installing App - deviceId[${deviceId}] appBinaryPath[${appBinaryPath}]`);
     await spawnAsync('xcrun', ['simctl', 'install', deviceId, appBinaryPath], { stdio: 'inherit' });
+
+    // Launch app with dylib injected
+    const dylibPath = getDylibPath();
+    console.log(`\n💉 Launching app with dylib injected - dylibPath[${dylibPath}]`);
+
+    try {
+      await spawnAsync('xcrun', ['simctl', 'launch', deviceId, APP_ID], {
+        stdio: 'inherit',
+        env: {
+          ...process.env,
+          SIMCTL_CHILD_DYLD_INSERT_LIBRARIES: dylibPath,
+        },
+      });
+    } catch (error: any) {
+      console.warn('⚠️  App launch with dylib failed:', error.message);
+    }
 
     const getTestSuiteLogs = setupLogger(
       '(subsystem == "com.facebook.react.log")',
